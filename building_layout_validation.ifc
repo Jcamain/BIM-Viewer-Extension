@@ -1,0 +1,154 @@
+ISO-10303-21;
+HEADER;
+FILE_DESCRIPTION(('IFC4 Reference Model for IDS Validation Verification Layout'),'2;1');
+FILE_NAME('building_layout_validation.ifc','2026-08-19T12:00:00',('BIM Technical Lead'),('OpenBIM Engineering'),'AI Preprocessor','AI Engine','');
+FILE_SCHEMA(('IFC4'));
+ENDSEC;
+
+DATA;
+/* 1. Global Project Context & Spatial Structure Hierarchy */
+#1 = IFCPROJECT('1p$w4X2X17vPRY1_V4O$Z0', #2, 'Office Building Project', 'Commercial Showcase Layout Project', $, $, $, (#10), #7);
+#2 = IFCOWNERHISTORY(#3, #6, $, .ADDED., $, $, $, 1787140800);
+#3 = IFCPERSONANDORGANIZATION(#4, #5, $);
+#4 = IFCPERSON('PERS_01', 'Lead', 'BIM Coordinator', $, $, $, $, $);
+#5 = IFCORGANIZATION('ORG_01', 'OpenBIM Engineering Solutions', 'Global BIM Standards Consulting', $, $);
+#6 = IFCAPPLICATION(#5, '2026.1', 'AI IFC Preprocessor', 'IFC-Gen');
+#7 = IFCUNITASSIGNMENT((#8, #9));
+#8 = IFCSIUNIT(*, .LENGTHUNIT., .MILLI., .METER.);
+#9 = IFCSIUNIT(*, .AREAUNIT., $, .SQUARE_METER.);
+#10 = IFCGEOMETRICREPRESENTATIONCONTEXT($, 'Model', 3, 1.E-05, #11, $);
+#11 = IFCAXIS2PLACEMENT3D(#12, $, $);
+#12 = IFCCARTESIANPOINT((0., 0., 0.));
+
+#20 = IFCSITE('2p$w4X2X17vPRY1_V4O$Z1', #2, 'Project Site Location', 'Urban Development Zone', $, #21, $, $, .ELEMENT., $, $, $, $, $);
+#21 = IFCAXIS2PLACEMENT3D(#22, $, $);
+#22 = IFCCARTESIANPOINT((0., 0., 0.));
+
+#30 = IFCBUILDING('3p$w4X2X17vPRY1_V4O$Z2', #2, 'Office Building', 'Commercial 3-Storey Office Building Layout', $, #31, $, $, .ELEMENT., $, $, $);
+#31 = IFCAXIS2PLACEMENT3D(#32, $, $);
+#32 = IFCCARTESIANPOINT((0., 0., 0.));
+
+/* Spatial Levels (Levels 0, 1, 2, and Roof) */
+#40 = IFCBUILDINGSTOREY('4p$w4X2X17vPRY1_V4O$Z0', #2, 'Level 0', 'Ground Floor Infrastructure Foundation and Mechanical Core Area', $, #41, $, $, .ELEMENT., 0.0);
+#41 = IFCAXIS2PLACEMENT3D(#42, $, $);
+#42 = IFCCARTESIANPOINT((0., 0., 0.));
+
+#50 = IFCBUILDINGSTOREY('4p$w4X2X17vPRY1_V4O$Z1', #2, 'Level 1', 'First Floor Open Plan Workspace Structure Frame Layout', $, #51, $, $, .ELEMENT., 4000.0);
+#51 = IFCAXIS2PLACEMENT3D(#52, $, $);
+#52 = IFCCARTESIANPOINT((0., 0., 4000.0));
+
+#60 = IFCBUILDINGSTOREY('4p$w4X2X17vPRY1_V4O$Z2', #2, 'Level 2', 'Second Floor Executive Suite and Critical Data IT Server Room', $, #61, $, $, .ELEMENT., 8000.0);
+#61 = IFCAXIS2PLACEMENT3D(#62, $, $);
+#62 = IFCCARTESIANPOINT((0., 0., 8000.0));
+
+#70 = IFCBUILDINGSTOREY('4p$w4X2X17vPRY1_V4O$Z3', #2, 'Roof Level', 'Roof Level External AHU Air Plant Equipment Deck', $, #71, $, $, .ELEMENT., 12000.0);
+#71 = IFCAXIS2PLACEMENT3D(#72, $, $);
+#72 = IFCCARTESIANPOINT((0., 0., 12000.0));
+
+/* Spatial Containment Structural Aggregations */
+#80 = IFCRELAGGREGATES('5p$w4X2X17vPRY1_V4O$Z0', #2, 'ProjectToSite', $, #1, (#20));
+#81 = IFCRELAGGREGATES('5p$w4X2X17vPRY1_V4O$Z1', #2, 'SiteToBuilding', $, #20, (#30));
+#82 = IFCRELAGGREGATES('5p$w4X2X17vPRY1_V4O$Z2', #2, 'BuildingToStoreys', $, #30, (#40, #50, #60, #70));
+
+/* 2. Physical Layout Zones (IFCSPACE Elements Mapping to rules) */
+#90 = IFCSPACE('1A1A4X2X17vPRY1_V4O$Z0', #2, 'Room 001: Main Plant Room', 'Heavy Mechanical Utilities Area', $, #91, $, $, .ELEMENT., .INTERNAL., $);
+#91 = IFCAXIS2PLACEMENT3D(#92, $, $);
+#92 = IFCCARTESIANPOINT((0., 0., 0.));
+
+#100 = IFCSPACE('1A1A4X2X17vPRY1_V4O$Z1', #2, 'Room 101: Open Plan Office Workspace', 'Occupant General Office Space Layout', $, #101, $, $, .ELEMENT., .INTERNAL., $);
+#101 = IFCAXIS2PLACEMENT3D(#102, $, $);
+#102 = IFCCARTESIANPOINT((0., 0., 0.));
+
+#110 = IFCSPACE('1A1A4X2X17vPRY1_V4O$Z2', #2, 'Room 201: Critical Server Room', 'Enterprise Secure IT Networking Infrastructure Room', $, #111, $, $, .ELEMENT., .INTERNAL., $);
+#111 = IFCAXIS2PLACEMENT3D(#112, $, $);
+#112 = IFCCARTESIANPOINT((0., 0., 0.));
+
+#120 = IFCRELCONTAINEDINSPATIALSTRUCTURE('6p$w4X2X17vPRY1_V4O$Z0', #2, 'Level0Spaces', $, (#90), #40);
+#121 = IFCRELCONTAINEDINSPATIALSTRUCTURE('6p$w4X2X17vPRY1_V4O$Z1', #2, 'Level1Spaces', $, (#100), #50);
+#122 = IFCRELCONTAINEDINSPATIALSTRUCTURE('6p$w4X2X17vPRY1_V4O$Z2', #2, 'Level2Spaces', $, (#110), #60);
+
+/* 3. Physical BIM Components Assets (Instantiating the Targets) */
+/* Level 0: Foundation Footing and Chilled Mechanical Pump Asset */
+#200 = IFCFOOTING('2A1A4X2X17vPRY1_V4O$Z0', #2, 'F-01-CON', 'Main Structural Footing Foundation Array Block', $, #201, $, $, .FOOTING_BEAM.);
+#201 = IFCAXIS2PLACEMENT3D(#202, $, $);
+#202 = IFCCARTESIANPOINT((1000., 1000., 0.));
+
+#210 = IFCPUMP('2A1A4X2X17vPRY1_V4O$Z1', #2, 'PMP-CHW01-3456', 'Primary Plant Chilled Water Centrifugal Pump Unit', $, #211, $, $, .CENTRIFUGAL.);
+#211 = IFCAXIS2PLACEMENT3D(#212, $, $);
+#212 = IFCCARTESIANPOINT((2000., 1000., 0.));
+
+/* Level 1: Workspace Structural Framework Supporting Beam Element */
+#220 = IFCBEAM('2A1A4X2X17vPRY1_V4O$Z2', #2, 'B-01-STL', 'Primary Structural Overhead Load-Bearing Steel Support Beam Element', $, #221, $, $, .BEAM.);
+#221 = IFCAXIS2PLACEMENT3D(#222, $, $);
+#222 = IFCCARTESIANPOINT((0., 0., 2000.));
+
+/* Level 2: Server Room Infrastructure Equipment Fan Asset Component */
+#230 = IFCFAN('2A1A4X2X17vPRY1_V4O$Z3', #2, 'FAN-L2-05', 'Server Rack Redundant Cooling Recirculation Exhaust Fan Array Unit', $, #231, $, $, .CENTRIFUGAL.);
+#231 = IFCAXIS2PLACEMENT3D(#232, $, $);
+#232 = IFCCARTESIANPOINT((1500., 3000., 500.));
+
+/* Roof Level: High Power External Ventilation Processing Air Handling Unit Fan */
+#240 = IFCFAN('2A1A4X2X17vPRY1_V4O$Z4', #2, 'FAN-RF-01', 'Roof Main Air Handling Processor Extraction Fan System Intake', $, #241, $, $, .CENTRIFUGAL.);
+#241 = IFCAXIS2PLACEMENT3D(#242, $, $);
+#242 = IFCCARTESIANPOINT((5000., 5000., 0.));
+
+/* Spatial Element Component Level Mapping Containments */
+#250 = IFCRELCONTAINEDINSPATIALSTRUCTURE('7p$w4X2X17vPRY1_V4O$Z0', #2, 'L0Components', $, (#200, #210), #40);
+#251 = IFCRELCONTAINEDINSPATIALSTRUCTURE('7p$w4X2X17vPRY1_V4O$Z1', #2, 'L1Components', $, (#220), #50);
+#252 = IFCRELCONTAINEDINSPATIALSTRUCTURE('7p$w4X2X17vPRY1_V4O$Z2', #2, 'L2Components', $, (#230), #60);
+#253 = IFCRELCONTAINEDINSPATIALSTRUCTURE('7p$w4X2X17vPRY1_V4O$Z3', #2, 'RoofComponents', $, (#240), #70);
+
+/* 4. Data Assignment Specifications Properties & Base Quantities (To pass IDS checks) */
+/* Space Area Data Assignment (#100 Area for Room 101 Rules check) */
+#300 = IFCQUANTITYAREA('NetFloorArea', 'Calculated Indoor Net Floor Boundary Footprint Area', $, 145.5, $);
+#301 = IFCELEMENTQUANTITY('3A1A4X2X17vPRY1_V4O$Z0', #2, 'Qto_SpaceBaseQuantities', $, $, (#300));
+#302 = IFCRELDEFINESBYPROPERTIES('3A1A4X2X17vPRY1_V4O$Z1', #2, $, $, (#100), #301);
+
+/* Concrete Structural Property Assignment (#200 Footing Rules check) */
+#310 = IFCPROPERTYSINGLEVALUE('StructuralRole', $, IFCLABEL('LoadBearing'), $);
+#311 = IFCPROPERTYSET('3A1A4X2X17vPRY1_V4O$Z2', #2, 'Pset_ConcreteElementGeneral', $, (#310));
+#312 = IFCRELDEFINESBYPROPERTIES('3A1A4X2X17vPRY1_V4O$Z3', #2, $, $, (#200), #311);
+
+#313 = IFCMATERIAL('Concrete - C40/50');
+#314 = IFCMATERIALRELATIONSHIP('3A1A4X2X17vPRY1_V4O$Z4', #2, $, $, #313, (#200));
+
+#315 = IFCCLASSIFICATION('Uniclass 2015', '2015', '2026-01-01', 'Uniclass System Standard');
+#316 = IFCCLASSIFICATIONREFERENCE('http://uniclass.com/Pr_20_31_11_15', 'Pr_20_31_11_15', 'Concrete structural foundation components description', #315, $, $);
+#317 = IFCRELASSOCIATESCLASSIFICATION('3A1A4X2X17vPRY1_V4O$Z5', #2, $, $, (#200), #316);
+
+/* Pump Equipment Complex Property Matrix Assignment (#210 Centrifugal Pump) */
+#320 = IFCPROPERTYSINGLEVALUE('FlowRate', $, IFCREAL(125.75), $);
+#321 = IFCPROPERTYSET('3A1A4X2X17vPRY1_V4O$Z6', #2, 'Pset_PumpTypeCommon', $, (#320));
+#322 = IFCPROPERTYSINGLEVALUE('AssetIdentifier', $, IFCLABEL('PMP-CHW01-3456'), $);
+#323 = IFCPROPERTYSET('3A1A4X2X17vPRY1_V4O$Z7', #2, 'COBie_Asset_Data', $, (#322));
+#324 = IFCPROPERTYSINGLEVALUE('WarrantyPeriod', $, IFCLABEL('24 Months'), $);
+#325 = IFCPROPERTYSET('3A1A4X2X17vPRY1_V4O$Z8', #2, 'Pset_WarrantyData', $, (#324));
+#326 = IFCRELDEFINESBYPROPERTIES('3A1A4X2X17vPRY1_V4O$Z9', #2, $, $, (#210), #321);
+#327 = IFCRELDEFINESBYPROPERTIES('3A2A4X2X17vPRY1_V4O$Z0', #2, $, $, (#210), #323);
+#328 = IFCRELDEFINESBYPROPERTIES('3A2A4X2X17vPRY1_V4O$Z1', #2, $, $, (#210), #325);
+
+/* L2 Exhaust Room Recirculation Fan Property Assignment (#230 Server Exhaust Fan) */
+#330 = IFCPROPERTYSINGLEVALUE('NominalPowerRate', $, IFCREAL(1.25), $);
+#331 = IFCPROPERTYSET('3A2A4X2X17vPRY1_V4O$Z2', #2, 'Pset_FanTypeCommon', $, (#330));
+#332 = IFCPROPERTYSINGLEVALUE('NominalVoltage', $, IFCREAL(230.0), $);
+#333 = IFCPROPERTYSET('3A2A4X2X17vPRY1_V4O$Z3', #2, 'Pset_ElectricalDeviceCommon', $, (#332));
+#334 = IFCRELDEFINESBYPROPERTIES('3A2A4X2X17vPRY1_V4O$Z4', #2, $, $, (#230), #331);
+#335 = IFCRELDEFINESBYPROPERTIES('3A2A4X2X17vPRY1_V4O$Z5', #2, $, $, (#230), #333);
+
+/* Roof Intake Heavy Ventilation Fan Property Assignment (#240 Roof Main Intake Processor Fan) */
+#340 = IFCPROPERTYSINGLEVALUE('NominalPowerRate', $, IFCREAL(18.5), $);
+#341 = IFCPROPERTYSET('3A2A4X2X17vPRY1_V4O$Z6', #2, 'Pset_FanTypeCommon', $, (#340));
+#342 = IFCPROPERTYSINGLEVALUE('NominalVoltage', $, IFCREAL(400.0), $);
+#343 = IFCPROPERTYSET('3A2A4X2X17vPRY1_V4O$Z7', #2, 'Pset_ElectricalDeviceCommon', $, (#342));
+#344 = IFCRELDEFINESBYPROPERTIES('3A2A4X2X17vPRY1_V4O$Z8', #2, $, $, (#240), #341);
+#345 = IFCRELDEFINESBYPROPERTIES('3A2A4X2X17vPRY1_V4O$Z9', #2, $, $, (#240), #343);
+
+/* Steel Frame Core Structural Column Property Matrix Assignment (#220 Steel Beam Frame Line) */
+#350 = IFCMATERIAL('Steel S355');
+#351 = IFCMATERIALRELATIONSHIP('3B1A4X2X17vPRY1_V4O$Z0', #2, $, $, #350, (#220));
+#352 = IFCPROPERTYSINGLEVALUE('FireProtectionDuration', $, IFCREAL(60.0), $);
+#353 = IFCPROPERTYSET('3B1A4X2X17vPRY1_V4O$Z1', #2, 'Pset_StructuralSteelworkConfiguration', $, (#352));
+#354 = IFCRELDEFINESBYPROPERTIES('3B1A4X2X17vPRY1_V4O$Z2', #2, $, $, (#220), #353);
+
+ENDSEC;
+END-ISO-10303-21;
